@@ -9,6 +9,9 @@ class Player {
 
   public:
 
+  Player();
+	~Player();
+
   double get_vX();
   double get_vY();
   void set_vX(double);
@@ -25,4 +28,4 @@ class Player {
   double get_mass();
   void set_mass(double);
 
-}
+};

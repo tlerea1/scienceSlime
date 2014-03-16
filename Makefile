@@ -11,14 +11,13 @@ main: main.o eskiv.o player.o square.o dot.o draw_area.o
 	g++ $^ -o $@ $(LDFLAGS)
 
 player.o: player.h player.cc
-square.o: square.h square.cc
-dot.o: dot.h dot.cc
-draw_area.o: draw_area.h draw_area.cc player.h square.h dot.h
+ball.o: ball.h ball.cc
+draw_area.o: draw_area.h draw_area.cc player.h ball.h
 eskiv.o: eskiv.h eskiv.cc draw_area.h
 main.o: main.cc
 
 clean:
-	\rm *.o main eskiv.tar.gz
+	\rm *.o main slime.tar.gz
 
 tar:
-	tar zcvf eskiv.tar.gz main.cc player.h player.cc dot.h dot.cc square.h square.cc draw_area.h draw_area.cc eskiv.h eskiv.cc Makefile
+	tar zcvf slime.tar.gz main.cc player.h player.cc ball.h ball.cc draw_area.h draw_area.cc eskiv.h eskiv.cc Makefile

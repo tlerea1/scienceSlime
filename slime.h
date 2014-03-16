@@ -20,8 +20,8 @@ class Slime: public Gtk::Window{
 
 public:
   
-  Eskiv();
-  ~Eskiv();
+  Slime();
+  ~Slime();
 
   virtual bool on_key_press_event(GdkEventKey* event);
   virtual bool on_key_release_event(GdkEventKey* event);

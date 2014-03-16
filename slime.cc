@@ -3,7 +3,7 @@
 
 #include "eskiv.h"
 
-Eskiv::Eskiv():
+Slime::Slime():
   game(),
   vbox(),
   hbox(),
@@ -14,8 +14,8 @@ Eskiv::Eskiv():
 {
   
   
-  start.signal_clicked().connect(sigc::mem_fun(*this, &Eskiv::on_start_clicked));
-  Glib::signal_timeout().connect(sigc::mem_fun(*this, &Eskiv::on_timeout), 20);
+  start.signal_clicked().connect(sigc::mem_fun(*this, &Slime::on_start_clicked));
+  Glib::signal_timeout().connect(sigc::mem_fun(*this, &Slime::on_timeout), 20);
     
   set_default_size(800, 800);
 
@@ -39,11 +39,11 @@ Eskiv::Eskiv():
   
 }
 
-Eskiv::~Eskiv(){
+Slime::~Slime(){
 
 }
 
-bool Eskiv::on_key_press_event(GdkEventKey* event){
+bool Slime::on_key_press_event(GdkEventKey* event){
   int test = 0;
   for (std::list<guint>::iterator i=pressed.begin(); i != pressed.end();i++){
     if (*i == event->keyval){
@@ -56,16 +56,16 @@ bool Eskiv::on_key_press_event(GdkEventKey* event){
   return true;
 }
 
-bool Eskiv::on_key_release_event(GdkEventKey* event){
+bool Slime::on_key_release_event(GdkEventKey* event){
   pressed.remove(event->keyval);
   return true;
 }
 
-void Eskiv::on_start_clicked(){
+void Slime::on_start_clicked(){
   game.reset();
 }
 
-bool Eskiv::on_timeout(){
+bool Slime::on_timeout(){
   for (std::list<guint>::iterator i=pressed.begin();i != pressed.end();i++){
     switch (*i){
       case GDK_KEY_Left:
