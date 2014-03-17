@@ -9,14 +9,14 @@
 class Slime: public Gtk::Window{
 
   DrawArea game;
-  Gtk::VBox vbox;
-  Gtk::HBox hbox;
+//  Gtk::VBox vbox;
+//  Gtk::HBox hbox;
 
-  Gtk::Button start;
-  std::list<guint> pressed;
+//  Gtk::Button start;
+//  std::list<guint> pressed;
 
-  Gtk::TextView tv;
-  Glib::RefPtr<Gtk::TextBuffer> tb;
+//  Gtk::TextView tv;
+//  Glib::RefPtr<Gtk::TextBuffer> tb;
 
 public:
   
@@ -25,7 +25,7 @@ public:
 
   virtual bool on_key_press_event(GdkEventKey* event);
 //  virtual bool on_key_release_event(GdkEventKey* event);
-  void on_start_clicked();
+//  void on_start_clicked();
   bool on_timeout();
 };
 

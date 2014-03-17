@@ -4,36 +4,36 @@
 #include "slime.h"
 
 Slime::Slime():
-  game(),
-  vbox(),
-  hbox(),
-  start("Start"),
-  pressed(),
-  tv(),
-  tb(Gtk::TextBuffer::create())
+  game()
+//  vbox(),
+//  hbox(),
+//  start("Start"),
+//  pressed(),
+//  tv(),
+//  tb(Gtk::TextBuffer::create())
 {
   
   
-  start.signal_clicked().connect(sigc::mem_fun(*this, &Slime::on_start_clicked));
-//  Glib::signal_timeout().connect(sigc::mem_fun(*this, &Slime::on_timeout), 10);
+//  start.signal_clicked().connect(sigc::mem_fun(*this, &Slime::on_start_clicked));
+  Glib::signal_timeout().connect(sigc::mem_fun(*this, &Slime::on_timeout), 10);
     
   set_default_size(800, 800);
 
-  vbox.set_homogeneous(false);
-  hbox.set_homogeneous(false);
+//  vbox.set_homogeneous(false);
+//  hbox.set_homogeneous(false);
 
-  tv.set_buffer(tb);
+//  tv.set_buffer(tb);
 
-  vbox.pack_start(start);
-  vbox.pack_end(tv);
+//  vbox.pack_start(start);
+//  vbox.pack_end(tv);
 
-  hbox.pack_start(vbox, Gtk::PACK_SHRINK);
-  hbox.pack_end(game, Gtk::PACK_EXPAND_WIDGET);
+//  hbox.pack_start(vbox, Gtk::PACK_SHRINK);
+//  hbox.pack_end(game, Gtk::PACK_EXPAND_WIDGET);
 
   //vbox.pack_start(game, Gtk::PACK_EXPAND_WIDGET);
   //vbox.pack_end(hbox, Gtk::PACK_SHRINK);
 
-  add(hbox);
+  add(game);
 
   show_all_children();
   
@@ -76,9 +76,11 @@ bool Slime::on_key_release_event(GdkEventKey* event){
   return true;
 }*/
 
+/*
 void Slime::on_start_clicked(){
   game.reset();
 }
+*/
 
 bool Slime::on_timeout(){
   /*
