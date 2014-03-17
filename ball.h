@@ -1,12 +1,13 @@
-
+#ifndef __BALL__
+#define __BALL__
 
 class Ball {
 
   double mass;
 	double radius;
-	double *color;
 	double vX, vY;
-  int posX, posY;
+  double posX, posY;
+	double *color;
 
 	public:
 
@@ -23,10 +24,12 @@ class Ball {
 	void set_vX(double);
 	double get_vY();
 	void set_vY(double);
-	int get_posX();
-	void set_posX(int);
-	int get_posY();
-	void set_posY(int);
+	double get_posX();
+	void set_posX(double);
+	double get_posY();
+	void set_posY(double);
 
 
 };
+
+#endif

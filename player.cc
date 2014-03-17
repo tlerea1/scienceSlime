@@ -6,12 +6,14 @@ Player::Player():
   vY(0),
   posX(0),
   posY(0),
-  radius(0)
+  radius(0),
+  color(0)
    {
+     color = new double[3];
    }
 
 Player::~Player() {
-
+  delete[] color;
 }
 
 double Player::get_vX() {
@@ -30,19 +32,19 @@ void Player::set_vY(double val) {
 	this->vY = val;
 }
 
-int Player::get_posX() {
+double Player::get_posX() {
 	return this->posX;
 }
 
-int Player::get_posY() {
+double Player::get_posY() {
 	return this->posY;
 }
 
-void Player::set_posX(int val) {
+void Player::set_posX(double val) {
 	this->posX = val;
 }
 
-void Player::set_posY(int val) {
+void Player::set_posY(double val) {
 	this->posY = val;
 }
 
@@ -62,5 +64,16 @@ void Player::set_mass(double val) {
 	this->mass = val;
 }
 
+double *Player::get_color() {
+  return this->color;
+}
 
+void Player::set_color(double *val, int len) {
+  if (len != 3) {
+    return;
+  }
+  this->color[0] = val[0];
+  this->color[1] = val[1];
+  this->color[2] = val[2];
+}
   

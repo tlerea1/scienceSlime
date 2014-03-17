@@ -7,15 +7,6 @@
 #include "ball.h"
 #include "player.h"
 
-#define BALL_MASS 5
-#define PLAYER_MASS 10
-
-#define P1_STARTX 0.25
-#define P1_STARTY 0
-
-#define P2_STARTX 0.75
-#define P2_STARTY 0
-
 class DrawArea : public Gtk::DrawingArea{
 
   Ball ball;
@@ -38,13 +29,13 @@ public:
   void move_p1_up();
   void move_p1_down();
   
-	void move_p2_left();
+  void move_p2_left();
   void move_p2_right();
   void move_p2_up();
   void move_p2_down();
   
-	void setup();
-	void reset();
+  void setup();
+  void reset();
  // int get_score();
  // int get_highscore();
 

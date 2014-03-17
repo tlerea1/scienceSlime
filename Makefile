@@ -7,13 +7,13 @@ CPPFLAGS += $(shell pkg-config --cflags gtkmm-3.0)
 LDFLAGS = $(shell pkg-config --libs gtkmm-3.0)
 
 
-main: main.o eskiv.o player.o square.o dot.o draw_area.o
+main: main.o slime.o player.o ball.o draw_area.o
 	g++ $^ -o $@ $(LDFLAGS)
 
 player.o: player.h player.cc
 ball.o: ball.h ball.cc
 draw_area.o: draw_area.h draw_area.cc player.h ball.h
-eskiv.o: eskiv.h eskiv.cc draw_area.h
+slime.o: slime.h slime.cc draw_area.h
 main.o: main.cc
 
 clean:

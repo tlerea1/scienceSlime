@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "draw_area.h"
+#include "defs.h"
 
 DrawArea::DrawArea():
   ball(),
@@ -19,7 +20,7 @@ DrawArea::DrawArea():
   #ifndef GLIBMM_DEFAULT_SIGNAL_HANDLERS_ENABLED
   signal_draw().connect(sigc::mem_fun(*this, &DrawArea::on_draw), false);
   #endif
-
+  setup();
 }
 
 DrawArea::~DrawArea(){
@@ -36,12 +37,18 @@ bool DrawArea::on_timeout(){
   return true;
 }
 
-static void draw_slime(Player p, Cairo::RefPtr<Caio::Context> &cr) {
+static void draw_slime(Player p, const Cairo::RefPtr<Cairo::Context> &cr) {
+	double *colors = p.get_color();
+	cr->set_source_rgb(colors[0], colors[1], colors[2]);
 	cr->arc(p.get_posX(), p.get_posY(), p.get_radius(), 0, M_PI);
+	cr->fill();
 }
 
-static void draw_ball(Cairo::RefPtr<Cairo::Context> &cr) {
-	cr->arc(ball.get_posX(), ball.get_poxY(), ball.get_radius(), 0, 2*M_PI);
+static void draw_ball(Ball ball, const Cairo::RefPtr<Cairo::Context> &cr) {
+	double *colors = ball.get_color();
+	cr->set_source_rgb(colors[0], colors[1], colors[2]);
+	cr->arc(ball.get_posX(), ball.get_posY(), ball.get_radius(), 0, 2*M_PI);
+	cr->fill();
 }
 
 bool DrawArea::on_draw(const Cairo::RefPtr<Cairo::Context> &cr){
@@ -53,32 +60,41 @@ bool DrawArea::on_draw(const Cairo::RefPtr<Cairo::Context> &cr){
   
   draw_slime(p1,cr);
   draw_slime(p2,cr);
-	draw_ball(cr);
+  draw_ball(ball,cr);
 
   cr->set_source_rgb(0.2117647059,0.6549019608,0.662745098);
   cr->paint();
-
-  cr->set_source_rgb(0,0,0);
-  cr->set_line_width(0.001);
 
   cr->stroke();
   return true;
 }
 
-void DrawArea::move_player_left(){
-  player.move_left();
+void DrawArea::setup() {
+  p1.set_mass(PLAYER_MASS);
+  p2.set_mass(PLAYER_MASS);
+  ball.set_mass(BALL_MASS);
+
+  p1.set_posX(P1_STARTX);
+  p1.set_posY(P1_STARTY);
+
+  p2.set_posX(P2_STARTX);
+  p2.set_posY(P2_STARTY);
 }
 
-void DrawArea::move_player_right(){
-  player.move_right();
+void DrawArea::move_p1_left(){
+  p1.set_vX(-SIDEV);
 }
 
-void DrawArea::move_player_up(){
-  player.move_up();
+void DrawArea::move_p1_right(){
+  p1.set_vX(SIDEV);
 }
 
-void DrawArea::move_player_down(){
-  player.move_down();
+void DrawArea::move_p1_up(){
+  p1.set_vY(JUMPV);
+}
+
+void DrawArea::move_p1_down(){
+  p1.set_vY(0);
 }
 
 void DrawArea::reset(){

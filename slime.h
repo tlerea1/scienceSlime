@@ -1,5 +1,5 @@
-#ifndef _ESKIV_H_
-#define _ESKIV_H_
+#ifndef _SLIME_H_
+#define _SLIME_H_
 
 #include <gtkmm.h>
 #include <list>
@@ -24,7 +24,7 @@ public:
   ~Slime();
 
   virtual bool on_key_press_event(GdkEventKey* event);
-  virtual bool on_key_release_event(GdkEventKey* event);
+//  virtual bool on_key_release_event(GdkEventKey* event);
   void on_start_clicked();
   bool on_timeout();
 };

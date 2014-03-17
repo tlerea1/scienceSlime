@@ -2,12 +2,12 @@
 
 Ball::Ball():
   mass(0),
+  radius(0),
   vX(0),
   vY(0),
   posX(0),
   posY(0),
-  radius(0),
-	color(0)
+  color(0)
    {
 		 color = new double[3];
    }
@@ -32,19 +32,19 @@ void Ball::set_vY(double val) {
 	this->vY = val;
 }
 
-int Ball::get_posX() {
+double Ball::get_posX() {
 	return this->posX;
 }
 
-int Ball::get_posY() {
+double Ball::get_posY() {
 	return this->posY;
 }
 
-void Ball::set_posX(int val) {
+void Ball::set_posX(double val) {
 	this->posX = val;
 }
 
-void Ball::set_posY(int val) {
+void Ball::set_posY(double val) {
 	this->posY = val;
 }
 

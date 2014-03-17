@@ -1,7 +1,7 @@
 #include <glibmm/main.h>
 #include <sstream>
 
-#include "eskiv.h"
+#include "slime.h"
 
 Slime::Slime():
   game(),
@@ -15,7 +15,7 @@ Slime::Slime():
   
   
   start.signal_clicked().connect(sigc::mem_fun(*this, &Slime::on_start_clicked));
-  Glib::signal_timeout().connect(sigc::mem_fun(*this, &Slime::on_timeout), 20);
+//  Glib::signal_timeout().connect(sigc::mem_fun(*this, &Slime::on_timeout), 10);
     
   set_default_size(800, 800);
 
@@ -44,6 +44,21 @@ Slime::~Slime(){
 }
 
 bool Slime::on_key_press_event(GdkEventKey* event){
+    switch (event->keyval){
+      case GDK_KEY_Left:
+        game.move_p1_left();
+        break;
+      case GDK_KEY_Right:
+        game.move_p1_right();
+        break;
+      case GDK_KEY_Up:
+        game.move_p1_up();
+	break;
+      case GDK_KEY_Down:
+        game.move_p1_down();
+	break;
+    }
+  /*
   int test = 0;
   for (std::list<guint>::iterator i=pressed.begin(); i != pressed.end();i++){
     if (*i == event->keyval){
@@ -52,20 +67,21 @@ bool Slime::on_key_press_event(GdkEventKey* event){
   }
   if (test == 0){
     pressed.push_back(event->keyval);
-  }
+  }*/
   return true;
 }
-
+/*
 bool Slime::on_key_release_event(GdkEventKey* event){
   pressed.remove(event->keyval);
   return true;
-}
+}*/
 
 void Slime::on_start_clicked(){
   game.reset();
 }
 
 bool Slime::on_timeout(){
+  /*
   for (std::list<guint>::iterator i=pressed.begin();i != pressed.end();i++){
     switch (*i){
       case GDK_KEY_Left:
@@ -87,6 +103,10 @@ bool Slime::on_timeout(){
   convert << "Score: " << game.get_score() << std::endl << "High: " << game.get_highscore() << std::endl;
   scores = convert.str();
   tb->set_text(scores);
+  */
+  
+
+
   return true;
 }
 
